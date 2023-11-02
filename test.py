@@ -1,7 +1,6 @@
 import cv2
 import pandas as pd
 from ultralytics import YOLO
-from tracker import*
 import cvzone
 model=YOLO('best.pt')
 
@@ -25,12 +24,6 @@ class_list = data.split("\n")
 #print(class_list)
 
 count=0
-
-tracker=Tracker()
-
-cy1=322
-cy2=368
-offset=6
 
 while True:    
     ret,frame = cap.read()
@@ -59,15 +52,8 @@ while True:
         d=int(row[5])
         c=class_list[d]
         cvzone.putTextRect(frame,f'{c}',(x1,y1),1,1)
-
-        list.append([x1,y1,x2,y2])
-    bbox_id=tracker.update(list)
-    for bbox in bbox_id:
-        x3,y3,x4,y4,id=bbox
-        cx=int(x3+x4)//2
-        cy=int(y3+y4)//2
-        cv2.rectangle(frame,(x3,y3),(x4,y4),(255,0,255),2)
-        cvzone.putTextRect(frame,f'{id}',(x4,y4),1,1)
+        cv2.rectangle(frame,(x1,y1),(x2,y2),(255,0,255),2)
+        cvzone.putTextRect(frame,f'{id}',(x2,y2),1,1)
 
            
 
