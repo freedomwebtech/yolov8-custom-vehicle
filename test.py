@@ -1,6 +1,7 @@
 import cv2
 import pandas as pd
 from ultralytics import YOLO
+from tracker import*
 import cvzone
 model=YOLO('best.pt')
 
@@ -15,7 +16,7 @@ def RGB(event, x, y, flags, param):
 cv2.namedWindow('RGB')
 cv2.setMouseCallback('RGB', RGB)
 
-cap=cv2.VideoCapture('autof.mp4')
+cap=cv2.VideoCapture('')
 
 
 my_file = open("coco1.txt", "r")
@@ -24,7 +25,7 @@ class_list = data.split("\n")
 #print(class_list)
 
 count=0
-
+tracker=Tracker()
 while True:    
     ret,frame = cap.read()
     if not ret:
@@ -53,7 +54,7 @@ while True:
         c=class_list[d]
         cvzone.putTextRect(frame,f'{c}',(x1,y1),1,1)
         cv2.rectangle(frame,(x1,y1),(x2,y2),(255,0,255),2)
-        cvzone.putTextRect(frame,f'{id}',(x2,y2),1,1)
+        
 
            
 
