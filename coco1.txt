@@ -1,4 +1,0 @@
-auto-rikshaw
-motor-cycle
-bicycle
-car
