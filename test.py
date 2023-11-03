@@ -58,7 +58,8 @@ while True:
            
 
 
-
+    cv2.line(frame,(580,363),(580,499),(0,0,255),2)
+    cv2.line(frame,(598,363),(598,499),(0,0,255),2)
     cv2.imshow("RGB", frame)
     if cv2.waitKey(1)&0xFF==27:
         break
